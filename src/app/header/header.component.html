@@ -1,6 +1,6 @@
 <header class="header">
   <div class="header__wrapper">
-    <div class="header__wrapper-item">USD: {{ usd }}</div>
-    <div class="header__wrapper-item">EUR: {{ eur }}</div>
+    <div class="header__wrapper-item">USD: {{ usd | async }}</div>
+    <div class="header__wrapper-item">EUR: {{ eur | async }}</div>
   </div>
 </header>
