@@ -7,9 +7,7 @@
         #firstCurrency
         (click)="setBaseCurrency(firstCurrency.value)"
       >
-        <option value="USD">USD</option>
-        <option value="UAH">UAH</option>
-        <option value="EUR">EUR</option>
+        <option *ngFor="let item of currencies">{{ item }}</option>
       </select>
       <p class="main__box-container-to">-></p>
       <select
@@ -17,16 +15,24 @@
         #secondCurrency
         (click)="setSecondCurrency(secondCurrency.value)"
       >
-        <option value="USD">USD</option>
-        <option value="UAH">UAH</option>
-        <option value="EUR">EUR</option>
+        <option *ngFor="let item of currencies">{{ item }}</option>
       </select>
     </div>
     <button class="main__box-btn" (click)="convert()">Submit</button>
     <div class="main__box-result">
-      <p>1 {{ firstCurrency.value }}</p>
-      <p>=</p>
-      <p>{{ result }} {{ secondCurrency.value }}</p>
+      <div class="main__box-result-container">
+        <input
+          class="main__box-result-container-number"
+          type="text"
+          value="1.00"
+        />
+        <p>{{ firstCurrency.value }}</p>
+      </div>
+
+      <div class="main__box-result-container">
+        <p class="main__box-result-container-number">{{ result }}</p>
+        <p>{{ secondCurrency.value }}</p>
+      </div>
     </div>
   </div>
 </main>
