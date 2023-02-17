@@ -1,7 +1,9 @@
+@use "/src/app/color-variables.scss";
+
 .header {
   width: 100%;
   height: 100px;
-  background-color: #810ca8;
+  background-color: color-variables.$secondaryBlue;
 
   &__wrapper {
     height: 100%;
@@ -11,7 +13,7 @@
 
     &-item {
       font-size: 36px;
-      color: #fff;
+      color: color-variables.$textWhite;
       margin-right: 30px;
     }
   }
