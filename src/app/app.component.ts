@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { CurrencyDataService } from './services/currency-data.service';
@@ -9,13 +9,21 @@ import { CurrencyDataService } from './services/currency-data.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  currentJSON: any = [];
-
-  firstCurrency: string = 'USD';
-  secondCurrency: string = 'USD';
-  result: string = '1';
-
+  firstCurrency = 'USD';
+  secondCurrency = 'USD';
+  result = '1.00';
+  currencies: string[] = [];
   subscription: Subscription;
+
+  constructor(
+    public currencyDataSvc: CurrencyDataService,
+    private cdref: ChangeDetectorRef
+  ) {}
+
+  ngOnInit(): void {
+    this.currencies = ['USD', 'UAH', 'EUR'];
+    this.cdref.detectChanges();
+  }
 
   setBaseCurrency(currency: string) {
     this.firstCurrency = currency;
@@ -25,24 +33,11 @@ export class AppComponent {
     this.secondCurrency = currency;
   }
 
-  constructor(public currencyDataSvc: CurrencyDataService) {}
-
   convert() {
     this.subscription = this.currencyDataSvc
       .getCurrencyData(this.firstCurrency)
       .subscribe((data) => {
-        this.currentJSON = JSON.stringify(data);
-        this.currentJSON = JSON.parse(this.currentJSON);
-
-        if (this.secondCurrency === 'USD') {
-          this.result = this.currentJSON.rates.USD;
-        }
-        if (this.secondCurrency === 'UAH') {
-          this.result = this.currentJSON.rates.UAH.toFixed(2);
-        }
-        if (this.secondCurrency === 'EUR') {
-          this.result = this.currentJSON.rates.EUR.toFixed(2);
-        }
+        this.result = data.rates[this.secondCurrency].toFixed(2);
       });
   }
 
