@@ -1,36 +1,44 @@
 <app-header></app-header>
 <main class="main">
-  <div class="main__box">
-    <div class="main__box-container">
+  <div class="main__wrapper">
+    <div class="main__wrapper-currencies">
       <select
-        class="main__box-container-select"
+        class="main__wrapper-currencies-select"
         #firstCurrency
         (click)="setBaseCurrency(firstCurrency.value)"
       >
-        <option *ngFor="let item of currencies">{{ item }}</option>
+        <option *ngFor="let currency of currencies">{{ currency }}</option>
       </select>
-      <p class="main__box-container-to">-></p>
+      <p class="main__wrapper-currencies-to">-></p>
       <select
-        class="main__box-container-select"
+        class="main__wrapper-currencies-select"
         #secondCurrency
         (click)="setSecondCurrency(secondCurrency.value)"
       >
-        <option *ngFor="let item of currencies">{{ item }}</option>
+        <option *ngFor="let currency of currencies">{{ currency }}</option>
       </select>
     </div>
-    <button class="main__box-btn" (click)="convert()">Submit</button>
-    <div class="main__box-result">
-      <div class="main__box-result-container">
+
+    <button class="main__wrapper-btn" (click)="showResult()">Submit</button>
+
+    <div class="main__wrapper-result">
+      <div class="main__wrapper-result-container">
         <input
-          class="main__box-result-container-number"
-          type="text"
-          value="1.00"
+          class="main__wrapper-result-container-input"
+          type="number"
+          [(ngModel)]="form.count"
+          #count="ngModel"
+          (input)="getnputValue($event)"
         />
         <p>{{ firstCurrency.value }}</p>
       </div>
 
-      <div class="main__box-result-container">
-        <p class="main__box-result-container-number">{{ result }}</p>
+      <div class="main__wrapper-result-equal">=</div>
+
+      <div class="main__wrapper-result-container">
+        <p>
+          {{ result.toFixed(2) }}
+        </p>
         <p>{{ secondCurrency.value }}</p>
       </div>
     </div>
