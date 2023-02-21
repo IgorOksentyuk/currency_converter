@@ -11,14 +11,14 @@
   background-color: color-variables.$mainPurple;
   color: color-variables.$textWhite;
 
-  &__box {
+  &__wrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     margin-top: -100px;
 
-    &-container {
+    &-currencies {
       display: flex;
 
       &-select {
@@ -58,28 +58,30 @@
     }
 
     &-result {
-      width: 100%;
+      width: 100vw;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
       &-container {
         display: flex;
-        align-self: center;
         align-items: center;
-        margin-bottom: 30px;
 
-        p {
-          margin: 0 20px 0 0;
-        }
-
-        input {
+        &-input {
           width: 160px;
           height: 40px;
-          margin-right: 20px;
           background-color: color-variables.$textWhite;
           color: color-variables.$mainPurple;
           border-radius: 12px;
         }
+
+        p:nth-last-of-type(1) {
+          margin-left: 20px;
+        }
+      }
+
+      &-equal {
+        margin: 40px;
       }
     }
   }
