@@ -29,20 +29,20 @@ export class AppComponent {
   ngOnInit(): void {
     this.currencies = ['USD', 'UAH', 'EUR'];
     this.cdref.detectChanges();
-    this.getCurrencyValue();
+    this.updateSubscription();
   }
 
   setBaseCurrency(currency: string) {
     this.firstCurrency = currency;
-    this.getCurrencyValue();
+    this.updateSubscription();
   }
 
   setSecondCurrency(currency: string) {
     this.secondCurrency = currency;
-    this.getCurrencyValue();
+    this.updateSubscription();
   }
 
-  getCurrencyValue() {
+  updateSubscription() {
     this.subscription = this.currencyDataSvc
       .getCurrencyData(this.firstCurrency)
       .subscribe((data) => {
