@@ -1,14 +1,15 @@
-**Application that converts EUR, USD and UAH.**
+**Application in which you can view the list of products and add/remove them to the cart. Also you can open admin panel in which you can add new products and remove current.**
 
 ---
 
 _Made with plain:_
 
 - HTML;
-- SCSS;
+- SCSS (BEM);
 - TS;
 - Angular;
-- Love :)
+- Angular Material;
+- RxJS.
 
 ---
 
